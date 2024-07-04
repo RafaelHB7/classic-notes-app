@@ -1,0 +1,11 @@
+{{#with this}}
+<section>
+    <span>Título</span>
+    <div>
+        <input type="text" name="input{{id}}" hx-post="/save" hx-trigger="input delay:1s" value="{{note}}">
+        <span class="icon" hx-post="/insertNote" hx-target="#new" hx-swap="outerHTML" hx-trigger="click">+</span>
+        <span class="icon" hx-post="/deleteNote" hx-target="closest section" hx-swap="outerHTML" hx-trigger="click" hx-vars="id:{{id}}">-</span>
+    </div>
+</section>
+<span id="new"></span>
+{{/with}}

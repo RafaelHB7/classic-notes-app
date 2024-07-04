@@ -1,0 +1,45 @@
+<html lang="pt-BR">
+<head>
+    <title>CNA</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script> <!--HTMX-->
+    <style>
+        body * {
+            font-family: monospace;
+            font-size: 2rem;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        div {
+            display: flex;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            background-color: gray;
+            border: 1px solid black;
+            border-radius: 50%;
+            text-align: center;
+            font-weight: bold;
+            margin-left: 8px;
+            user-select: none;
+            cursor: pointer;
+        }
+        .icon:hover {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <span>Título</span>
+    <div>
+        <input type="text" name="input1" hx-post="/save" hx-trigger="input delay:1s">
+        <span class="icon">+</span>
+    </div>
+    <span id="new"></span>
+</body>
+</html>

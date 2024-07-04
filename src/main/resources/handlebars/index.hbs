@@ -1,0 +1,61 @@
+<html lang="pt-BR">
+<head>
+    <title>CNA</title>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script> <!--HTMX-->
+    <style>
+        body * {
+            font-family: monospace;
+            font-size: 2rem;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        div {
+            display: flex;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            background-color: gray;
+            border: 1px solid black;
+            border-radius: 50%;
+            text-align: center;
+            font-weight: bold;
+            margin-left: 8px;
+            user-select: none;
+            cursor: pointer;
+        }
+        .icon:hover {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    {{#if this}}
+    {{#each this}}
+        <section>
+            <span>Título</span>
+            <div>
+                <input type="text" name="input{{id}}" hx-post="/save" hx-trigger="input delay:1s" value="{{note}}">
+                <span class="icon" hx-post="/insertNote" hx-target="#new" hx-swap="outerHTML" hx-trigger="click">+</span>
+                <span class="icon" hx-post="/deleteNote" hx-target="closest section" hx-swap="outerHTML" hx-trigger="click" hx-vars="id:{{id}}">-</span>
+            </div>
+        </section>
+    {{/each}}
+    {{else}}
+        <section>
+            <span>Título</span>
+            <div>
+                <input type="text" name="input0" hx-post="/save" hx-trigger="input delay:1s" value="">
+                <span class="icon" hx-post="/insertNote" hx-target="#new" hx-swap="outerHTML" hx-trigger="click">+</span>
+                <span class="icon" hx-post="/deleteNote" hx-target="closest section" hx-swap="outerHTML" hx-trigger="click" hx-vars="id:0">-</span>
+            </div>
+        </section>
+    {{/if}}
+    <span id="new"></span>
+</body>
+</html>
